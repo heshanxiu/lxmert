@@ -141,9 +141,9 @@ ACT2FN = {"gelu": gelu, "relu": torch.nn.functional.relu, "swish": swish}
 class VisualConfig(object):
     VISUAL_LOSSES = ['obj', 'attr', 'feat']
     def __init__(self,
-                 l_layers=12,
+                 l_layers=9,
                  x_layers=5,
-                 r_layers=0):
+                 r_layers=5):
         self.l_layers = l_layers
         self.x_layers = x_layers
         self.r_layers = r_layers
@@ -329,7 +329,7 @@ class BertAttention(nn.Module):
         # Take the dot product between "query" and "key" to get the raw attention scores.
         attention_scores = torch.matmul(query_layer, key_layer.transpose(-1, -2))
         attention_scores = attention_scores / math.sqrt(self.attention_head_size)
-        # Apply the attention mask is (precomputed for all layers in BertModel forward() function)
+        # Apply the attention mask 3 is (precomputed for all layers in BertModel forward() function)
         if attention_mask is not None:
             attention_scores = attention_scores + attention_mask
 
